@@ -6,7 +6,8 @@
     align-items: center;
     /* justify-content: center; */
     margin: 0 auto;
-    background-image: url(../img/Rectangle.png);
+    /* background-image: url(../img/Rectangle.png); */
+    background-color: rgb(39, 42, 68);
     background-repeat: no-repeat;
     color: antiquewhite;
     position:relative;
@@ -17,11 +18,12 @@
 
 .gradient {
     font-family: sans-serif;
-    font-weight: 18px;
+    font-weight: bold;
     color: transparent;    
-	-webkit-background-clip: text;
-	background-clip: text;
-	background-image: linear-gradient(to right, rgb(132, 5, 5), rgb(155, 2, 155));
+	/* -webkit-background-clip: text;
+	background-clip: text; */
+	/* background-image: linear-gradient(to right, rgb(132, 5, 5), rgb(155, 2, 155)); */
+    color: antiquewhite;
 }
 
     
@@ -46,12 +48,12 @@
     border: 2px;
 }
 
-.btn:hover {
+/* .btn:hover {
     color: #490b4d;
     background: #b421f3;
     box-shadow: 0 0 5px #b421f3, 0 0 40px #b421f3, 0 0 80px #b421f3;
     transition-delay: 0.1s;
-}
+} */
 
 .mrg10{
     margin: 10px;
