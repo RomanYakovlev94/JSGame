@@ -1,7 +1,7 @@
 const baseDiv = document.getElementById("allInside");
 const start = document.getElementById("btn-start");
 const objQuest = [];
-const arrAnswers = [];
+const arrAnswersTrue = [];
 
 let reload;
 let scoreTrue = 0;
@@ -10,64 +10,76 @@ let randomNumber = null;
 
 let render = () => {
     randomNumber = Math.floor(Math.random() * objQuest.length);
-    baseDiv.innerHTML += `
-    <div id="numQuest" class="mrg10"> НОМЕР ВОПРОСА: ${randomNumber+1}</div>
-    <img id="question-img" width="350" src="${objQuest[randomNumber].question}" alt="quesPhoto">
-    <button id="a" class="btn btn-answer mrg10">${objQuest[randomNumber].a}</button>
-    <button id="b" class="btn btn-answer mrg10">${objQuest[randomNumber].b}</button>
-    <button id="c" class="btn btn-answer mrg10">${objQuest[randomNumber].c}</button>
-    <button id="d" class="btn btn-answer mrg10">${objQuest[randomNumber].d}</button>
-    <button class="btn mrg10 btn-gr" id="reload"><span>RELOAD<span></span></span></button>
-    <div>${scoreTrue} true</div>
-    <div>${scoreFalse} false</div>
-    `
-    let aAnswer = document.getElementById("a");
-    let bAnswer = document.getElementById("b");
-    let cAnswer = document.getElementById("c");
-    let dAnswer = document.getElementById("d");
-    let reload = document.getElementById("reload");
-
-    reload.addEventListener('click', () => {
+    if(arrAnswersTrue.includes(randomNumber)){
         baseDiv.innerHTML = " "
         render();
-    });
-    a.addEventListener('click', () => {
-        if ("a" == objQuest[randomNumber].true){
-            scoreTrue += 1;
-            renderTrueAnswer();
-        }else{
-            scoreFalse +=1;
-            renderTrueAnswer();
-        }
-    });
-    b.addEventListener('click', () => {
-        if ("b" == objQuest[randomNumber].true){
-            scoreTrue += 1;
-            renderTrueAnswer();
-        }else{
-            scoreFalse +=1;
-            renderTrueAnswer();
-        }
-    });
-    c.addEventListener('click', () => {
-        if ("c" == objQuest[randomNumber].true){
-            scoreTrue += 1;
-            renderTrueAnswer();
-        }else{
-            scoreFalse +=1;
-            renderTrueAnswer();
-        }
-    });
-    d.addEventListener('click', () => {
-        if ("d" == objQuest[randomNumber].true){
-            scoreTrue += 1;
-            renderTrueAnswer();
-        }else{
-            scoreFalse +=1;
-            renderTrueAnswer();
-        }
-    });
-    
+    }else{
+        baseDiv.innerHTML += `
+        <div class="allRender">
+            <div id="numQuest" class="mrg10"> НОМЕР ВОПРОСА: ${randomNumber+1}</div>
+            <img id="question-img" width="350" src="${objQuest[randomNumber].question}" alt="quesPhoto">
+            <button id="a" class="btn btn-answer mrg10">${objQuest[randomNumber].a}</button>
+            <button id="b" class="btn btn-answer mrg10">${objQuest[randomNumber].b}</button>
+            <button id="c" class="btn btn-answer mrg10">${objQuest[randomNumber].c}</button>
+            <button id="d" class="btn btn-answer mrg10">${objQuest[randomNumber].d}</button>
+            <button class="btn mrg10 btn-gr" id="reload"><span>RELOAD<span></span></span></button>
+            <div class="scores">    
+                <div class="scores-true">${scoreTrue} TRUE</div>
+                <div class="scores-false">${scoreFalse} FALSE</div>
+            </div>
+        </div>
+        `
+        let aAnswer = document.getElementById("a");
+        let bAnswer = document.getElementById("b");
+        let cAnswer = document.getElementById("c");
+        let dAnswer = document.getElementById("d");
+        let reload = document.getElementById("reload");
+
+        reload.addEventListener('click', () => {
+            baseDiv.innerHTML = " "
+            render();
+        });
+        aAnswer.addEventListener('click', () => {
+            if ("a" == objQuest[randomNumber].true){
+                scoreTrue += 1;
+                arrAnswersTrue.push(randomNumber);
+                renderTrueAnswer();
+            }else{
+                scoreFalse +=1;
+                renderTrueAnswer();
+            }
+        });
+        bAnswer.addEventListener('click', () => {
+            if ("b" == objQuest[randomNumber].true){
+                scoreTrue += 1;
+                arrAnswersTrue.push(randomNumber);
+                renderTrueAnswer();
+            }else{
+                scoreFalse +=1;
+                renderTrueAnswer();
+            }
+        });
+        cAnswer.addEventListener('click', () => {
+            if ("c" == objQuest[randomNumber].true){
+                scoreTrue += 1;
+                arrAnswersTrue.push(randomNumber);
+                renderTrueAnswer();
+            }else{
+                scoreFalse +=1;
+                renderTrueAnswer();
+            }
+        });
+        dAnswer.addEventListener('click', () => {
+            if ("d" == objQuest[randomNumber].true){
+                scoreTrue += 1;
+                arrAnswersTrue.push(randomNumber);
+                renderTrueAnswer();
+            }else{
+                scoreFalse +=1;
+                renderTrueAnswer();
+            }
+        });
+    }
 }
 
 let renderTrueAnswer = () => {
@@ -141,7 +153,7 @@ objQuest[4] = {
     c: "C: mouse[bird[\"size\"]]",
     d: "D: Все варианты валидны",
     true: "a",
-    answer: "В JavaScript все ключи объекта являются строками (кроме Symbol). И хотя мы не набираем их как строки, они всегда преобразовываются к строкам под капотом. JavaScript интерпретирует (или распаковывает) операторы. При использовании квадратных скобок JS замечает [ и продолжает пока не встретит ]. Только после этого он вычислит то, что находится внутри скобок. mouse[bird.size]: Сперва определяется bird.size, которое равно \"small\". mouse[\"small\"] возвращает true. Но с записью через точку так не происходит. У mouse нет ключа bird. Таким образом, mouse.bird равно undefined. Затем мы запрашиваем ключ size, используя точечную нотацию: mouse.bird.size. Так как mouse.bird это undefined, мы запрашиваем undefined.size. Это не является валидным, и мы получаем ошибку типа Cannot read property \"size\" of undefined."
+    answer: "Ответ: A. В JavaScript все ключи объекта являются строками (кроме Symbol). И хотя мы не набираем их как строки, они всегда преобразовываются к строкам под капотом. JavaScript интерпретирует (или распаковывает) операторы. При использовании квадратных скобок JS замечает [ и продолжает пока не встретит ]. Только после этого он вычислит то, что находится внутри скобок. mouse[bird.size]: Сперва определяется bird.size, которое равно \"small\". mouse[\"small\"] возвращает true. Но с записью через точку так не происходит. У mouse нет ключа bird. Таким образом, mouse.bird равно undefined. Затем мы запрашиваем ключ size, используя точечную нотацию: mouse.bird.size. Так как mouse.bird это undefined, мы запрашиваем undefined.size. Это не является валидным, и мы получаем ошибку типа Cannot read property \"size\" of undefined."
 }
 objQuest[5] = {
     numQuest: "${randomNumber}",

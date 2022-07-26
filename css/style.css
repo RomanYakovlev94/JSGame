@@ -1,5 +1,5 @@
 #allInside {
-    width: 375px;
+    max-width: 400px;
     height: 812px;
     display: flex;
     flex-direction: column;
@@ -11,6 +11,32 @@
     background-repeat: no-repeat;
     color: antiquewhite;
     position:relative;
+    overflow: hidden;
+    top: 0;
+    /* transition: 0.3s; */
+}
+.allRender{
+    position: absolute;  
+    transition: top 4s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.scores{
+    min-width: 250px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+.scores-true{
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgb(67, 140, 75);
+}
+.scores-false{
+    font-family: sans-serif;
+    font-weight: bold;
+    color: rgb(190, 71, 71);
 }
 #btn-start{
     margin: 250px auto;
